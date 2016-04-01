@@ -12,8 +12,29 @@ angapp.controller("contppt2",function($scope){
 $scope.perdidas=0;
 $scope.empatada=0;
 $scope.empatadas=0;
+$scope.mitest="Comenzar";
+//eleccionMaquina="papel"
+$scope.verificar= function(eleccionHumano)
+{
+	$scope.comezar();
+	if(eleccionHumano==eleccionMaquina)
+	{
+		$scope.mitest="empataste. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
+		$scope.empatadas++;		
 
-eleccionMaquina="papel"
+	}
+	else if(eleccionMaquina=="piedra")
+	{
+		$scope.mitest="vos ganastes. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
+		$scope.ganadas++;
+	}
+	else
+	{
+		$scope.mitest="ganó la Maquina. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
+		$scope.perdidas++;
+	};
+}//fin de 
+/*
 $scope.tijera=function ()
 {
 	$scope.comezar();
@@ -81,7 +102,7 @@ $scope.piedra=function ()
 	};
 
 }//FIN DE LA FUNCIÓN
-
+*/
 $scope.comezar= function()
 {
  	//Genero el número RANDOM entre 1 y 3
