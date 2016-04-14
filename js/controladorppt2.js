@@ -7,10 +7,10 @@ angapp.controller("contppt2",function($scope){
 //ANGULAR
 //EN angular la s
 $scope.perdidas=0;
-$scope.empatada=0;
 $scope.empatadas=0;
+$scope.perdidas=0;
 $scope.mitest="Comenzar";
-//eleccionMaquina="papel"
+eleccionMaquina="papel"
 $scope.verificar= function(eleccionHumano)
 {
 	$scope.comezar();
@@ -18,19 +18,56 @@ $scope.verificar= function(eleccionHumano)
 	{
 		$scope.mitest="empataste. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
 		$scope.empatadas++;		
-
 	}
-	else if(eleccionMaquina=="piedra")
+	else 
 	{
-		$scope.mitest="vos ganastes. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
-		$scope.ganadas++;
-	}
-	else
-	{
-		$scope.mitest="ganó la Maquina. la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
-		$scope.perdidas++;
+		$scope.jugar(eleccionHumano);
 	};
 }//fin de verificar
+$scope.jugar= function(eleccionHumano)
+{
+	
+	switch(eleccionHumano) {
+    case "piedra":
+        if (eleccionMaquina== "papel")
+		{
+			$scope.mitest="vos ganastes. ";
+			$scope.ganadas++;
+		}
+		else
+		{
+			$scope.mitest="Ganó la Maquina. ";
+			$scope.perdidas++;
+		}
+        break;
+    case "papel":
+        if (eleccionMaquina=="piedra")
+		{
+			$scope.mitest="vos ganastes. ";
+			$scope.ganadas++;
+		}
+		else if(eleccionMaquina=="tijera")
+		{
+			$scope.mitest="Ganó la Maquina. " ;
+			$scope.perdidas++;
+		}
+        break;
+    case "tijera":
+        if (eleccionMaquina=="papel")
+		{
+			$scope.mitest="vos ganastes. ";
+			$scope.ganadas++;
+		}
+		else if(eleccionMaquina=="piedra")
+		{
+			$scope.mitest="Ganó la Maquina. " ;
+			$scope.perdidas++;
+		}
+        break;
+	}
+	$scope.mitest= $scope.mitest + "la maquina elegiò: " + eleccionMaquina + " y vos elegiste: " + eleccionHumano;
+}
+
 $scope.comezar= function()
 {
  	//Genero el número RANDOM entre 1 y 3
@@ -39,7 +76,7 @@ $scope.comezar= function()
 		switch(numeroSecreto)
 		{
 			case 1:
-			eleccionMaquina="piedra";
+				eleccionMaquina="piedra";
 				break;
 			case 2:
 				eleccionMaquina="papel";
